@@ -11,8 +11,9 @@
   - [TCP / IP (Transmission Control Protocol \& Internet Protocol)](#tcp--ip-transmission-control-protocol--internet-protocol)
   - [IP Address](#ip-address)
   - [Domain Name System](#domain-name-system)
-  - [HTTP](#http)
+  - [HTTP/S](#https)
     - [Security](#security)
+    - [HTTP Versions](#http-versions)
   - [CORS](#cors)
   - [WebAPI](#webapi)
     - [REST](#rest)
@@ -72,38 +73,43 @@ Functionality provided:
 - Availability, if a machine fails the LB just uses the available machines
 - Flexibility, ie: the LB can reroute requests from the old to new machines (software update)
 ## Content Delivery Networks
-     Brings content closer to the user, consequently, increases the performance perceived by the user.
-     Several point of presence(PoP) or edge servers are found via DNS or Anycast
-         DNS - each PoP has a unique IP
-         Anycast - all PoP have the same IP
-         In any case the closest server is returned
-     PoP works “like a cache” if the requested data is not present the PoP will ask the Origin Server for the data
-     Key advantages
-         Latency - HTTPS handshake latency is reduced since the request is forward to the closet PoP instead of the origin server.
-         Security - protect DDoS by having a larger network than the attacker
-         Availability - hardware failure 
-         More uptime and less load
+CDNs are server that bring content closer to the user, consequently, increases the performance perceived by it. 
+
+A CDN server is often calledn Point of Presence (PoP) or edge server,  it works "like a cache" of an Origin server, and, oftenly, there several PoP across to exploit location to achieve better performance/latency.
+
+The closest PoP's can be found via DNS or Anycast:
+- DNS: each PoP has a unique IP
+- Anycast: all PoP have the same IP
+
+Key advantages
+- Latency - HTTPS handshake latency is reduced since the request is forward to the closet PoP instead of the origin server.
+- Security - protect DDoS by having a larger network than the attacker 
+- Availability - hardware failure 
+- More uptime and less load
 ## Caching
-     Store a limited amount of frequently requested items neat to whom is asking for them.
-     Different types of caches 
-     Different types of eviction
-         Least recently unused
-         Random replacement
+Store a limited amount of frequently requested items neat to whom is asking for them.
+
+Different types of caches.
+     
+Different types of eviction:
+- Least recently unused
+- Random replacement
 ## TCP / IP (Transmission Control Protocol & Internet Protocol)
-     AllPeopleSeemToNeedDataProcessing
+AllPeopleSeemToNeedDataProcessing
 ## IP Address
-     Represents where a machine “is” in the internet and it used to allow communication between machine
-     Unique series of numbers composed of 4 numbers [0 - 255] separated by a dot
-     Network Address Translation or NAT(tipically router) represents a set of devices connected to a network
-     Outside communication: default gateway
-     x.x.x.0 and x.x.x.255 within a network are reserved 
+Represents where a machine "is" in the internet and it used to allow communication between machines. An IP is unique series of numbers composed of 4 numbers [0 - 255] separated by a dot.
+
+- Network Address Translation or NAT(tipically router) represents a set of devices connected to a network
+- Outside communication: default gateway
+- x.x.x.0 and x.x.x.255 within a network are reserved 
 ## Domain Name System
-     System that resolves websites domain names like www.google.com into IP addresses
-     Root Nameservers store the Top Level domain Nameservers
-     Top Level domain Nameservers store the Authoritative Nameservers
-     Caching is everywhere (browser, OS, DNS resolver)
-     If the DNS resolver asks the RN, then the TLDN, then the AN, and finally forwards the answer to the requestor
-## HTTP
+DNS is system that resolves websites domain names like www.google.com into IP addresses.
+- Root Nameservers store the Top Level domain Nameservers
+- Top Level domain Nameservers store the Authoritative Nameservers
+- Caching is everywhere (browser, OS, DNS resolver)
+
+If the DNS resolver asks the RN, then the TLDN, then the AN, and finally forwards the answer to the requestor
+## HTTP/S
 Hyper text transfer protocol used to transfer data over the network. 
 
 HTTP is vulnerable to hackers since the data is sent as clear “text”.
@@ -113,14 +119,14 @@ HTTPS is the same as HTTP but with a security feature that scrambles the data se
 - SSL - secure sockets layer; authenticates server and encrypts data
 - TLS - Transport layer security; latest industry standard and based on SSL; authenticates server and client and encrypts data.
 
-1 - asks for copy of the ssl certificate (used to authenticate that the website is secure)
-2 - check if the certificate is valid
-3 - confirms to the server that we trust it
-HTTP Version
- 1: built on top TCP requiring a tcp per request
-  1.1: introduction of keep-alive by not performing the TCP handshake for every request; introduction of pipelining meaning that several which meant that multiple request could be sent within the same connection with the caveat that the responses had to be sent in the same order; Packet loss and subsequent requests would be 
- 2: introduction of HTTP Streams which allow multiple requests could be sent in the same connection and don’t require order in of responses; bidirectional communication with the necessity of client poll
- 3: Uses QUIC as protocol based on UDP Connection; streams are independent; QUIC implements connection ID which allows the client to change network without losing their connection whereas TCP doesn’t
+1. - asks for copy of the ssl certificate (used to authenticate that the website is secure)
+2. - check if the certificate is valid
+3. - confirms to the server that we trust it
+### HTTP Versions
+- 1: built on top TCP requiring a tcp per request
+- 1.1: introduction of keep-alive by not performing the TCP handshake for every request; introduction of pipelining meaning that several which meant that multiple request could be sent within the same connection with the caveat that the responses had to be sent in the same order; Packet loss and subsequent requests would be 
+- 2: introduction of HTTP Streams which allow multiple requests could be sent in the same connection and don’t require order in of responses; bidirectional communication with the necessity of client poll
+- 3: Uses QUIC as protocol based on UDP Connection; streams are independent; QUIC implements connection ID which allows the client to change network without losing their connection whereas TCP doesn’t
 
 
 ## CORS
