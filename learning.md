@@ -96,6 +96,13 @@ Different types of eviction:
 - Random replacement
 ## TCP / IP (Transmission Control Protocol & Internet Protocol)
 AllPeopleSeemToNeedDataProcessing
+Application
+Presentation
+Session
+Transport
+Network
+Data link
+Physical
 ## IP Address
 Represents where a machine "is" in the internet and it used to allow communication between machines. An IP is unique series of numbers composed of 4 numbers [0 - 255] separated by a dot.
 
